@@ -1,0 +1,299 @@
+<html>
+<head>
+<title>
+Zrs.Synth 0.95
+</title>
+</head>
+<body bgcolor="#ffffff" text="#000000" link="#ff0000" alink="#00ff00" vlink="#0000ff">
+<p>
+<center>
+<font face="courier new, courier" size="+4" color="#800000">
+Zrs.Synth<br>
+</font>
+<font face="courier new, courier" size="+3">
+Version 0.95<br>
+</font>
+<i>by Emanuel Borsboom </i>
+</center>
+</p>
+
+<p> <center>
+<applet codebase="classes" code="SynthApplet.class" width=300 height=48>
+
+<p><i>[Your web browser doesn't seem to support Java applets.  Sorry.]</i></p>
+
+</applet>
+</center> </p>
+
+<p>
+Use the above button to bring up a synthesizer window.
+You may need to wait while it loads if you have a slow connection.
+Note that, when running as an applet, you cannot save your work
+(to do that, download the distribution at the bottom of this page
+and run it locally).  You can, however load the examples (see the
+end of the tutorial).  I'd recommend that you use MS Internet
+Explorer 3.x as your browser; it is much faster than
+Netscape.
+</p>
+
+<p>
+This Java program can be used to generate sounds.
+You design the sound by putting together basic building blocks
+(<i>generators</i>): oscillators, envelopes, adders, etc.
+Once the design is done, you instruct the program to generate the sound (which can take some time, depending on the complexity of the sound).
+</p>
+
+<h1 align=center>Screen Shots</h1>
+<center>
+<p>
+<img src="images/SynthWindow.gif">
+</p>
+<p>
+<img src="images/WaveWindow.gif">
+</p>
+</center>
+
+<h1 align=center>Short Tutorial</h1>
+<p>
+<img src="images/tut/OscillatorBox.gif" alt="" align=right>
+The most important building block is the <i>oscillator</i>.
+The oscillator generates a basic wave pattern, such as a sin wave, triangle
+wave, square wave, sawtooth wave, or a custom wave which could be generated
+by another program or sampled from the real world.
+To create an oscillator, select <b>Oscillator</b> from the <b>Generators</b> menu.  
+Then, click the mouse where you want to place it.
+Once it is placed, the properties dialog box will automatically come up.
+Here you can select the wave type (for now, leave it as sin) and then click Okay.
+If you want to access the properties again later, double click on the oscillator.
+</p>
+<p>
+<img src="images/tut/Constant.gif" alt="" align=right>
+An oscillator on its own isn't very useful;
+you need some way to tell it how loud to be, and which frequency to play.
+The three circles inside the oscillator, labeled `freq', `phase', and `amp',
+are the <i>inputs</i> accepted by an oscillator.  You can feed the output
+of another generator into each one of these inputs.
+Lets give this oscillator a frequency of 110hz, and an amplitude of 1.0.
+Select <b>Constant</b> from the <b>Generators</b> menu, and click where you
+want it to be placed (a good place is just above and to the left of the oscillator).
+As before, the properties dialog box will pop up, allowing you to select the
+value of this constant.
+Type in 110, and click Okay.
+Now you have two generators, but you still need a way to hook the output of
+the constant to the frequency input of the oscillator.
+This is done by dragging from the center of the constant to the `freq' input
+of the oscillator.  
+Now crate another constant of value 1.0, and hook it to the `amp' input.
+The phase input of the oscillator is optional.
+You could also hook the output of a non-constant generator to any of these
+inputs.
+For example, it is very useful to connect the output of an envelope
+generator to the amplitude input.
+</p>
+<p>
+<img src="images/tut/Output.gif" alt="" align=right>
+Now we have designed a very simple sound: a 110hz pure tone.
+All that's left is to have the program generate the waveform.
+But first, we need to tell it which generator to use as the final output.
+This is done by selecting <b>Output</b> from the <b>Generators</b> menu.
+You place this as before, and hook the output of the Oscillator to its
+only input.  Now, select <b>Synthesize</b> from the <b>File</b> menu (or
+click <b>Synthesize</b> in the button bar).
+Once this is complete, a new window appears which contains the waveform.
+Click on the <b>Play</b> button to hear what it sounds like.
+</p>
+<p>
+This concludes this short tutorial.
+There are a few examples available for you to load.  
+You can see these by selecting <b>File</b>|<b>Open</b> and entering one of
+these URLs:
+</p>
+<ul>
+<li>http://zerius.victoria.bc.ca/synth/example1.synth (FM synthesis)
+<li>http://zerius.victoria.bc.ca/synth/example2.synth (additive synthesis)
+<li>http://zerius.victoria.bc.ca/synth/example3.synth (reverb and flange)
+</ul>
+<br clear=all>
+
+<h1 align=center>Reference - Synthesizer Window</h1>
+<h3><font color="#800000">Mouse Movements</font></h3>
+<ul>
+<h4>Selection</h4>
+<p>
+To select a generator, click on it.  All others will be unselected.</br>
+To toggle selection of a generator, click it with the middle button
+or ctrl-click it.  <br>
+To unselect all generators, click on the canvas<br>
+To select all generators bounded by a rectangle, drag on the canvas
+</p>
+<h4>Moving</h4>
+<p>
+To move a generator, drag in its border<br>
+If you drag in the border of a selected generator, all selected generators
+will be moved.<br>
+You can move the entire contents of the window  (if all the generators don't
+fit) by dragging with the right button (or holding down you Meta key if you
+only have one button).
+</p>
+<h4>Connecting</h4>
+<p>
+You connect two generators by dragging from the center of the source
+to an input of the destination.
+</p>
+<h4>Other</h4>
+<p>
+Double click on a generator to bring up its properties, if any.
+</p>
+</ul>
+<h3><font color="#800000">Commands</font></h3>
+<ul>
+<h4>File menu</h4>
+<dl>
+<dt>New
+<dd>Brings up a new synthesizer window
+<dt>New Wave
+<dd>Brings up a new wave window
+<dt>Open ...
+<dd>Opens a file.
+This brings up a dialog box where you can enter the filename.
+You can also enter a URL to the file you want to open.
+Opening files is only possible when the program is run locally as an
+application.
+<dt>Save
+<dd>Saves the current file.  This is only possible when running locally.
+<dt>Save As ...
+<dd>Saves the synthesizer and allows you to give it a name.  This is only possible when running locally.
+<dt>Synthesize
+<dd>Generates the waveform
+<dt>Synthesizer Properties ...
+<dd>Brings up a dialog box which allows you to select sampling rate of the
+sound to generate, and the number of seconds of sound to generate.
+<dt>Close
+<dd>Closes the window
+</dl>
+
+<h4>Edit menu</h4>
+<dl>
+<dt>Select All
+<dd>Selects all generators and connections.
+<dt>Unselect All
+<dd>Unselects all generators and onnections.
+<dt>Delete
+<dd>Deletes the selected generator(s) and/or connection(s).
+<dt>Properties ...
+<dd>Brings up properties for selected generator(s).
+</dl>
+
+<h4>Generators menu</h4>
+Each of the menu items in this menu create a generator.  They are explained
+below.
+</h4>
+
+<h4>Help menu</h4>
+<dl>
+<dt>About ...
+<dd>Brings up the about box.
+</dl>
+</ul>
+
+<h3><font color="#800000">Generators</font></h3>
+<ul>
+<dl>
+<dt>Constant
+<dd>Outputs a constant value, no matter what time it is.
+<dt>Oscillator
+<dd>Outputs a basic wave pattern: sin, triangle, square, sawtooth,
+or custom (which can be loaded from a .WAV file).
+<dt>Adder
+<dd>Adds the output of any number of generators to each other
+<dt>Multiplier
+<dd>Multiplies the two inputs
+<dt>Divider
+<dd>Divides the first input by the second.
+<dt>Envelope
+<dd>This generates a simple linear time-varying envelope.
+In the properties, you can draw the envelope, with time on the x-axis and
+amplitude on the y-axis.
+<dt>Delay
+<dd>Delays its input by the amount of time specified by the input.
+In the properties, you must specify the maximum amount of delay (default
+one tenth of a second), because it must know how much to remember.  
+It cannot see into the future.
+<dt>Filter
+<dd>Linear filter.  You enter the comma-separated coefficients for<br>
+y(n) = b0*x(n) + b1*x(n-1) + ... + a0*y(n-1) + a1*y(n-2) + ...<br>
+You need a working knowledge of digital filter theory (which I don't have,
+so don't bother asking :-)) to use this.
+<dt>Output
+<dd>This is special.  Whatever you specify as the input, is what the
+synthesizer will use for it's final output.
+</dl>
+</ul>
+
+<h1 align=center>Other Stuff</h1>
+
+<p>
+This has been developed as a project for the <a href="http://kafka.uvic.ca/mc/207/">Music 207</a> (Music, Technology, and Computers) course at the <a href="http://www.uvic.ca/">University of Victoria</a>.
+</p>
+
+<p>
+If you want to be able to load and save files, you will need to run this
+as an application on your computer.  The source code is also available.
+Get the distribution in .zip format or as a tarball here:
+<ul>
+<li><a href="zrs-synth-0.95.tar.gz">zrs-synth-0.95.tar.gz</a>
+<li><a href="zrs-synth-0.95.zip">zrs-synth-0.95.zip</a>
+</ul>
+</p>
+
+<p>
+There are many known problems, most of which there isn't much I can do about.
+There are lots of different implementations of the Java runtime, and they all
+seem to have their own problems (mostly with the AWT windowing library).
+Here are the platforms I've tried this on, and some observations about each one.
+If anyone has suggestions or knows workarounds, please contact me.
+<dl>
+<dt>Solaris
+<dd>Works great. I wish all the implementations were like this.
+<dt>Win32 (Windows 95 or Windows NT 4.0)
+<dd>There are problems with screen updating, especially if you have Plus!
+and have enabled "show window contents while dragging".  Scrollbars don't
+work according the specifications, but I worked around that.  Dialog boxes
+don't always come up the right size.  The mouse cursor doesn't change when
+it's supposed to.  Screen updating is really slow.
+(I do most of my development on this platform). 
+<dt>FreeBSD 2.2-CURRENT
+<dd>Serious problems with math.  Numbers disappear.  It core dumps when you
+open a file using the Open dialog box.  It core dumps a lot, actually.  Maybe
+it's the version I'm running.  (this is what I would be doing my development
+on if it worked right).
+<dt>AIX
+<dd>Generally works okay.  There are a few strange things when it tries to
+change the cursor.  Opening files doesn't always work.
+<dt>Netscape 3.0.
+<dd>Works well.  Often suffers the same problems as the platform it's running
+on.  Usually some problems are gone, and new ones are there. 
+<dt>MS Internet Explorer 3.0
+<dd>Works very well.  Sound generation is really fast! (well, relatively
+speaking)
+</dl>
+<p>
+The sound output quality is really poor.  There's nothing I can do about it.
+Java can only play 8khz &#181;-law audio.  If you want to hear the sound
+properly, save the sound to a .WAV file and use another program to play it.
+</p>
+<hr>
+<p>
+If you have any problems or notice any bugs (of which I'm sure there are
+plenty), don't hesitate to contact me.  I'm also looking for as many
+reports of how this works under different platforms, so please e-mail me
+if you use a system not on the above list (especially if it's Linux or
+MacOS).  Also talk to me if you want to add a new type of generator but
+aren't sure how (or if you have created a new type of generator, I'd love
+to see it).
+</p>
+<p>You can contact me by e-mail at <a href="mailto:manny@zerius.victoria.bc.ca">&lt;manny@zerius.victoria.bc.ca&gt;</a><br>
+My homepage is at <a href="http://zerius.victoria.bc.ca/~manny/">
+http://zerius.victoria.bc.ca/~manny/</a>
+
+</body>
